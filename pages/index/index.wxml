@@ -1,5 +1,31 @@
 <!--index.wxml-->
-<view class="container">
- 首页
- 
+<view class="mall-index">
+	<SearchInput></SearchInput>
+	<!-- swiper轮播图 -->
+	<view class="swiper-box">
+		<swiper autoplay indicator-dots interval="5000" duration="500" circular>
+			<swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+				<image mode="widthFix" src="{{item.image_src}}"></image>
+			</swiper-item>
+		</swiper>
+	</view>
+	<!-- 导航 -->
+	<view class="cate-box">
+		<navigator wx:for="{{topNavList}}" wx:key="name" url="{{item.navigator_url}}" open-type="switchTab">
+			<image mode="widthFix" src="{{item.image_src}}"></image>
+		</navigator>
+	</view>
+	<!-- 楼层 -->
+	<view class="index-floor">
+		<view class="floor-group" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1    " wx:key="floor_title">
+			<view class="floor-title">
+				<image mode="widthFix" src="{{item1.floor_title.image_src}}"></image>
+			</view>
+			<view class="floor-list">
+				<navigator wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="name">
+					<image mode="{{index2===0?'widthFix':'scaleToFill'}}" src="{{item2.image_src}}"></image>
+				</navigator>
+			</view>
+		</view>
+	</view>
 </view>

@@ -4,3 +4,7 @@ page,text,view,swiper,swiper-item,image,navigator{
   margin: 0;
   box-sizing: border-box;
 }
+/* 定义主题颜色 */
+page{
+  --themeColor:#d81e06;
+}

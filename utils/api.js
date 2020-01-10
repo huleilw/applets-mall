@@ -1,0 +1,15 @@
+const MALL_API = 'https://api.zbztb.cn/api/public/v1'
+export const swiper =  MALL_API + '/home/swiperdata'
+export const categoryNav = MALL_API + '/home/catitems'
+export const floor = MALL_API + '/home/floordata'
+export const category = MALL_API + '/categories'
+export const search = MALL_API + '/goods/search'
+export const goodsDetail = MALL_API + '/goods/detail'
+export const goodsSearch = MALL_API + '/goods/qsearch'
+export const login = MALL_API + '/users/wxlogin'
+export const payOrder = MALL_API + '/my/orders/req_unifiedorder'
+export const createOrder = MALL_API + '/my/orders/create'
+export const checkOrder = MALL_API + '/my/orders/chkOrder'
+export const historyOrder = MALL_API + '/my/orders/all'
+
+
