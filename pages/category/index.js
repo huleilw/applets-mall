@@ -1,4 +1,5 @@
 const api = require('../../utils/api')
+import {request} from '../../request/index'
 Page({
   data: {
     categoryList:[],
@@ -20,14 +21,12 @@ Page({
   },
   // 获取商品分类信息
   getCateData(){
-    var _this = this
-    wx.request({
-      url: api.category,
-      success:({data})=>{
-        _this.categoryList = data.message
-        wx.setStorageSync('categoryList', {time:Date.now(),data:_this.categoryList})
-        _this.setCurrentDate(_this.categoryList)
-      }
+    request({
+      url: api.category
+    }).then(({data})=>{
+      this.categoryList = data.message
+        wx.setStorageSync('categoryList', {time:Date.now(),data:this.categoryList})
+        this.setCurrentDate(this.categoryList)
     })
   },
   //根据请求回来的数据重新赋值

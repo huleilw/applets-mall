@@ -1,4 +1,5 @@
 const api = require('../../utils/api.js')
+import {request} from '../../request/index'
 Page({
   data:{
     swiperList:[],
@@ -11,36 +12,24 @@ Page({
     this.getFloorList()
   },
   getSwiperList(){
-    var _this = this
-    wx.request({
-      url: api.swiper,
-      success:({data})=>{
-        _this.setData({
+    request({url: api.swiper}).then(({data})=>{
+        this.setData({
           swiperList:data.message
         })
-      }
     })
   },
   getTopNavList(){
-    var _this = this
-    wx.request({
-      url: api.categoryNav,
-      success:({data})=>{
-        _this.setData({
-          topNavList:data.message
-        })
-      }
+    request({url: api.categoryNav}).then(({data})=>{
+      this.setData({
+        topNavList:data.message
+      })
     })
   },
   getFloorList(){
-    var _this = this
-    wx.request({
-      url: api.floor,
-      success:({data})=>{
-        _this.setData({
-          floorList:data.message
-        })
-      }
+    request({url: api.floor}).then(({data})=>{
+      this.setData({
+        floorList:data.message
+      })
     })
   }
 })
