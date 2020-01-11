@@ -8,3 +8,6 @@ page,text,view,swiper,swiper-item,image,navigator{
 page{
   --themeColor:#d81e06;
 }
+image{
+  width:100%;
+}

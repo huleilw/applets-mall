@@ -1,66 +1,55 @@
-// pages/category/index.js
+const api = require('../../utils/api')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    categoryList:[],
+    leftMenuList:[],
+    rightContent:[],
+    currentIndex:0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    const categoryList = wx.getStorageSync('categoryList')
+    if(!categoryList){
+      this.getCateData()
+    }else if(Date.now()-categoryList.time > 1000*10){
+      this.getCateData()
+    }else{
+      this.categoryList = categoryList.data
+      this.setCurrentDate(this.categoryList)
+    }
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 获取商品分类信息
+  getCateData(){
+    var _this = this
+    wx.request({
+      url: api.category,
+      success:({data})=>{
+        _this.categoryList = data.message
+        wx.setStorageSync('categoryList', {time:Date.now(),data:_this.categoryList})
+        _this.setCurrentDate(_this.categoryList)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //根据请求回来的数据重新赋值
+  setCurrentDate(dataList){
+    const leftMenuList = dataList.map(it=>{
+      return{
+        id:it.cat_id,
+        name:it.cat_name
+      }
+    })
+    const rightContent = dataList[0].children
+    this.setData({
+      leftMenuList,
+      rightContent
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleCurrentMenu(e){
+    const {index} = e.currentTarget.dataset
+    const rightContent = this.categoryList[index].children
+    this.setData({
+      currentIndex:index,
+      rightContent
+    })
   }
 })
