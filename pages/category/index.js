@@ -5,7 +5,8 @@ Page({
     categoryList:[],
     leftMenuList:[],
     rightContent:[],
-    currentIndex:0
+    currentIndex:0,
+    scrollTop:0  //滚动条距离顶部的距离
   },
   onLoad: function (options) {
     const categoryList = wx.getStorageSync('categoryList')
@@ -48,7 +49,8 @@ Page({
     const rightContent = this.categoryList[index].children
     this.setData({
       currentIndex:index,
-      rightContent
+      rightContent,
+      scrollTop:0
     })
   }
 })

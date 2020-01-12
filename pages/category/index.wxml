@@ -11,7 +11,7 @@
             bindtap="handleCurrentMenu"
             >{{item.name}}</view>
         </scroll-view>
-        <scroll-view class="right-content" scroll-y>
+        <scroll-view class="right-content" scroll-y scroll-top="{{scrollTop}}">
             <view class="goods-group" wx:for="{{rightContent}}" wx:for-item="item1" wx:for-index="index1" wx:key="index">
                 <view class="goods-title">
                     <text class="delimiter">/</text>
@@ -19,7 +19,14 @@
                     <text class="delimiter">/</text> 
                 </view>
                 <view class="goods-list" >
-                    <navigator wx:for="{{item1.children}}" wx:key="cat_id" wx:for-item="item2" wx:for-index="index2">
+                    <navigator 
+                        wx:for="{{item1.children}}" 
+                        wx:key="cat_id" 
+                        wx:for-item="item2" 
+                        wx:for-index="index2"
+                        open-type="navigateTo"
+                        url="/pages/goods_list/index?cid={{item2.cat_id}}"
+                    >
                         <image mode="widthFix" src="{{item2.cat_icon}}"></image>
                         <view class="goods-item">{{item2.cat_name}}</view>
                     </navigator>

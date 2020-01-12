@@ -1,66 +1,77 @@
-// pages/goods_list/index.js
+const api = require('../../utils/api')
+import {request} from '../../request/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tabs:[
+      {
+        id:'01',
+        value:'综合',
+        isActive:true
+      },
+      {
+        id:'02',
+        value:'销量',
+        isActive:false
+      },
+      {
+        id:'03',
+        value:'价格',
+        isActive:false
+      }
+    ],
+    goodsList:[],
+    defaultImgUrl:'http://hbimg.b0.upaiyun.com/b7b5b489ab8adb866af91fee3019886c5389ff9d67ab-hH0Mm2_fw658',
   },
-
+  QueryParams:{
+    query:'',
+    pagenum:1,
+    cid:'',
+    pagesize:10,
+  },
+  totalPages:1,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.QueryParams.cid = options.cid
+    this.getGoodsList()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  handleTabItemChange(e){
+    const {tabs} = this.data
+    tabs.map((item,index)=>index===e.detail.index?item.isActive = true : item.isActive = false)
+    this.setData({
+      tabs
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  getGoodsList(){
+    request({url:api.search,data:this.QueryParams}).then(({data})=>{
+      const{goods,total} = data.message
+      this.totalPages = Math.ceil(total/this.QueryParams.pagesize)
+      this.setData({
+        goodsList:[...this.data.goodsList,...goods]
+      })
+      wx.stopPullDownRefresh()
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onPullDownRefresh(){
+    this.setData({
+      goodsList:[]
+    })
+    this.QueryParams.pagenum = 1
+    this.getGoodsList()
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onReachBottom(){
+    if(this.QueryParams.pagenum >=this.totalPages){
+      wx.showToast({
+        title: '没有下一页数据信息',
+      })
+    }else{
+      this.QueryParams.pagenum ++
+      this.getGoodsList()
+    }
   }
 })

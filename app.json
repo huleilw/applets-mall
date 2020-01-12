@@ -15,7 +15,7 @@
     "pages/pay/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#d81e06",
     "navigationBarTitleText": "商城",
     "navigationBarTextStyle": "white"
