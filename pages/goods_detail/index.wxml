@@ -1,13 +1,7 @@
 <view class="goods-detail">
     <view class="swiper-wrap">
         <swiper autoplay indicator-dots interval="5000" duration="500" circular>
-            <swiper-item 
-            wx:for="{{goodsInfo.pics}}" 
-            wx:key="pics_id" 
-            bindtap="previewImg" 
-            data-src="{{item.pics_mid}}"
-            data-urls="{{goodsInfo.pics}}"
-            >
+            <swiper-item wx:for="{{goodsInfo.pics}}" wx:key="pics_id" bindtap="previewImg" data-src="{{item.pics_mid}}" data-urls="{{goodsInfo.pics}}">
                 <image mode="widthFix" src="{{item.pics_mid}}"></image>
             </swiper-item>
         </swiper>
@@ -24,4 +18,22 @@
         <view class="img-detail-title">图文详情</view>
         <rich-text class="img-detail-content" nodes="{{goodsInfo.goods_introduce}}"></rich-text>
     </view>
+</view>
+<view class="footer-tools">
+    <view class="tools-item">
+        <view class="iconfont icon-kefu"></view>
+        <view class="tools-text">联系客服</view>
+        <button open-type="contact"></button>
+    </view>
+    <view class="tools-item">
+        <view class="iconfont icon-yixianshi-"></view>
+        <view class="tools-text">分享</view>
+        <button open-type="share"></button>
+    </view>
+    <navigator open-type="switchTab" class="tools-item" url="/pages/cart/index">
+        <view class="iconfont icon-gouwuche1"></view>
+        <view class="tools-text">购物车</view>
+    </navigator>
+    <view class="tools-item item-cart" bindtap="handleAddCart">加入购物车</view>
+    <view class="tools-item item-buy">立即购买</view>
 </view>

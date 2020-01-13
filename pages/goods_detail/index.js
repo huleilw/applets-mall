@@ -8,7 +8,8 @@ Page({
   data: {
     goodsInfo:{}
   },
-
+  //存放商品数据
+  GoodsData:{},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -22,6 +23,7 @@ Page({
       data: {goods_id:id}
     }).then(({data})=>{
       const {goods_name,goods_introduce,pics,goods_price} = data.message
+      this.GoodsData = data.message
       this.setData({
         goodsInfo:{
           goods_name,
@@ -39,5 +41,22 @@ Page({
       urls:urlArr,
       current:src
     })
+  },
+  handleAddCart(){
+    let cart = wx.getStorageSync('cart') || []
+    let index = cart.findIndex(v=>v.goods_id === this.GoodsData.goods_id)
+    console.log(this.GoodsData)
+    if(index=== -1){
+      this.GoodsData.num = 1
+      cart.push(this.GoodsData)
+    }else{
+      cart[index].num++
+    }
+    wx.setStorageSync('cart', cart)
+    wx.showToast({
+      title: '加入成功',
+      icon: 'success',
+      mask: true
+    });
   }
 })
