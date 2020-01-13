@@ -1,2 +1,43 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<view class="cart-page">
+    <view class="receive-address-row" wx:if="{{!address.userName}}">
+        <view class="address-btn">
+            <button type="primary" plain bindtap="handleGetAddress">获取收货地址</button>
+        </view>
+    </view>
+    <view class="address-detail-row" wx:else>
+        <view class="address-info">
+            <view class="user-name">收货人: {{address.userName}}</view>
+            <view class="user-phone">{{address.telNumber}}</view>
+        </view>
+        <view class="address">{{address.all}}</view>
+    </view>
+    <view class="cart-goods-wrap">
+        <view class="cart-goods-title">购物车</view>
+        <view class="cart-goods-main">
+            <view class="cart-goods-item">
+                <view class="checkbox-wrap">
+                    <checkbox-group bindchange="">
+                        <checkbox class="checkbox-item"></checkbox>
+                    </checkbox-group>
+                </view>
+               <navigator class="image-wrap">
+                   <image src="http://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000193373779_1_400x400.jpg" mode="widthFix">
+                       
+                   </image>
+               </navigator>
+                 
+                <view class="goods-info">
+                    <view class="goods-name">dddddddddddddddddddddddddddddddddddddddd</view>
+                    <view class="goods-price-info">
+                        <view class="price-text">￥12333</view>
+                        <view class="nun-tools-wrap">
+                            <view class="num-des">-</view>
+                            <view class="num-text">1</view>
+                            <view class="num-add">+</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
