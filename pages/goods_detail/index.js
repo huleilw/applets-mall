@@ -45,7 +45,6 @@ Page({
   handleAddCart(){
     let cart = wx.getStorageSync('cart') || []
     let index = cart.findIndex(v=>v.goods_id === this.GoodsData.goods_id)
-    console.log(this.GoodsData)
     if(index=== -1){
       this.GoodsData.num = 1
       this.GoodsData.checked = true

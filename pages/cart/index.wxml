@@ -19,7 +19,7 @@
                 wx:key="goods_id"
             >
                 <view class="checkbox-wrap">
-                    <checkbox-group bindchange="">
+                    <checkbox-group bindchange="handleCheckedItem" data-id="{{item.goods_id}}">
                         <checkbox class="checkbox-item" checked="{{item.checked}}"></checkbox>
                     </checkbox-group>
                 </view>
@@ -33,9 +33,9 @@
                     <view class="goods-price-info">
                         <view class="price-text">￥{{item.goods_price}}</view>
                         <view class="nun-tools-wrap">
-                            <view class="num-edit">-</view>
+                            <view class="num-edit" bindtap="handleItemEdit" data-id="{{item.goods_id}}" data-operation="{{-1}}">-</view>
                             <view class="num-text">{{item.num}}</view>
-                            <view class="num-edit">+</view>
+                            <view class="num-edit" bindtap="handleItemEdit" data-id="{{item.goods_id}}" data-operation="{{1}}">+</view>
                         </view>
                     </view>
                 </view>
@@ -45,17 +45,17 @@
     <!-- 底部工具栏 -->
     <view class="footer-tool">
         <view class="all-ck-wrap">
-            <checkbox-group bindchange="">
-                <checkbox>全选</checkbox>
+            <checkbox-group bindchange="handleItemAllChecked">
+                <checkbox checked="{{allChecked}}">全选</checkbox>
             </checkbox-group>
         </view>
         <view class="total-price-wrap">
             <view class="total-price">
                 合计：
-                <text class="total-price-text">￥12333</text>
+                <text class="total-price-text">￥{{totalPrice}}</text>
             </view>
             <view class="tips">包含运费</view>
         </view>
-        <view class="order-pay-wrap">结算(2)</view>
+        <view class="order-pay-wrap">结算({{totalNum}})</view>
     </view>
 </view>
