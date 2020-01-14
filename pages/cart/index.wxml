@@ -14,30 +14,48 @@
     <view class="cart-goods-wrap">
         <view class="cart-goods-title">购物车</view>
         <view class="cart-goods-main">
-            <view class="cart-goods-item">
+            <view class="cart-goods-item"
+                wx:for="{{cart}}"
+                wx:key="goods_id"
+            >
                 <view class="checkbox-wrap">
                     <checkbox-group bindchange="">
-                        <checkbox class="checkbox-item"></checkbox>
+                        <checkbox class="checkbox-item" checked="{{item.checked}}"></checkbox>
                     </checkbox-group>
                 </view>
-               <navigator class="image-wrap">
-                   <image src="http://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000193373779_1_400x400.jpg" mode="widthFix">
-                       
-                   </image>
-               </navigator>
-                 
+                <navigator class="image-wrap">
+                    <image src="{{item.goods_small_logo}}" mode="widthFix"></image>
+                </navigator>
                 <view class="goods-info">
-                    <view class="goods-name">dddddddddddddddddddddddddddddddddddddddd</view>
+                    <view class="goods-name">
+                        {{item.goods_name}}
+                    </view>
                     <view class="goods-price-info">
-                        <view class="price-text">￥12333</view>
+                        <view class="price-text">￥{{item.goods_price}}</view>
                         <view class="nun-tools-wrap">
-                            <view class="num-des">-</view>
-                            <view class="num-text">1</view>
-                            <view class="num-add">+</view>
+                            <view class="num-edit">-</view>
+                            <view class="num-text">{{item.num}}</view>
+                            <view class="num-edit">+</view>
                         </view>
                     </view>
                 </view>
             </view>
         </view>
+    </view>
+    <!-- 底部工具栏 -->
+    <view class="footer-tool">
+        <view class="all-ck-wrap">
+            <checkbox-group bindchange="">
+                <checkbox>全选</checkbox>
+            </checkbox-group>
+        </view>
+        <view class="total-price-wrap">
+            <view class="total-price">
+                合计：
+                <text class="total-price-text">￥12333</text>
+            </view>
+            <view class="tips">包含运费</view>
+        </view>
+        <view class="order-pay-wrap">结算(2)</view>
     </view>
 </view>

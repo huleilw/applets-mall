@@ -6,12 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:{}
+    address:{},
+    cart:[]
   },
   onShow(){
     const address = wx.getStorageSync('address');
+    const cart = wx.getStorageSync('cart')
     this.setData({
-      address
+      address,
+      cart
     })
   },
    async handleGetAddress(){

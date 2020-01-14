@@ -48,6 +48,7 @@ Page({
     console.log(this.GoodsData)
     if(index=== -1){
       this.GoodsData.num = 1
+      this.GoodsData.checked = true
       cart.push(this.GoodsData)
     }else{
       cart[index].num++
