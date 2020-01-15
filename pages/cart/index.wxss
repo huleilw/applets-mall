@@ -83,6 +83,12 @@ page {
 .cart-goods-wrap .cart-goods-main .cart-goods-item .goods-info .goods-price-info .nun-tools-wrap .num-edit {
   border: 1px solid #ccc;
 }
+.cart-goods-wrap .cart-goods-main .no-data-text {
+  text-align: center;
+  color: var(--themeColor);
+  font-size: 30rpx;
+  padding: 20 0rpx;
+}
 .footer-tool {
   position: fixed;
   bottom: 0;

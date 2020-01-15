@@ -14,7 +14,8 @@
     <view class="cart-goods-wrap">
         <view class="cart-goods-title">购物车</view>
         <view class="cart-goods-main">
-            <view class="cart-goods-item"
+            <block wx:if="{{cart.length >0}}">
+                <view class="cart-goods-item"
                 wx:for="{{cart}}"
                 wx:key="goods_id"
             >
@@ -40,6 +41,11 @@
                     </view>
                 </view>
             </view>
+            </block>
+            <block wx:else>
+                <image mode="widthFix" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579078352887&di=9471f12fb265f515f9e899e6b4a326b9&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fe1b1467beea0a9c7d6a56b32bac6d7e5dcd914f7c3e6-YTwUd6_fw658"></image>
+                <view class="no-data-text">您的购物车没有商品</view>
+            </block>
         </view>
     </view>
     <!-- 底部工具栏 -->
@@ -56,6 +62,6 @@
             </view>
             <view class="tips">包含运费</view>
         </view>
-        <view class="order-pay-wrap">结算({{totalNum}})</view>
+        <view class="order-pay-wrap" bindtap="handlePay">结算({{totalNum}})</view>
     </view>
 </view>

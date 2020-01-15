@@ -1,5 +1,5 @@
 import regeneratorRuntime from '../../lib/runtime/runtime'
-import{getSetting,chooseAddress,openSetting,showModal} from '../../utils/asyncWeChat.js'
+import{getSetting,chooseAddress,openSetting,showModal,showToast} from '../../utils/asyncWeChat.js'
 Page({
 
   /**
@@ -82,5 +82,19 @@ Page({
       cart[index].num += operation
       this.setCart(cart)
     }
+  },
+  async handlePay(){
+    const {address,totalNum} = this.data
+    if(!address.userName){
+       await showToast({title:'您还没有填收货地址'})
+       return 
+    }
+    if(totalNum === 0){
+      await showToast({title:'您还没有选购商品'})
+       return
+    }
+    wx.navigateTo({
+      url: '/pages/pay/index',
+    });
   }
 })
