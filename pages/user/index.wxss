@@ -1,1 +1,85 @@
-/* pages/user/index.wxss */
+page {
+  background-color: #f0f0f0;
+}
+.user-info-wrap {
+  background: var(--themeColor);
+}
+.user-info-wrap .user-img-wrap {
+  height: 45vh;
+  position: relative;
+}
+.user-info-wrap .user-img-wrap .bg-image {
+  height: 50vh !important;
+  filter: blur(4px);
+}
+.user-info-wrap .user-img-wrap .user-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.user-info-wrap .user-img-wrap .user-bg image {
+  width: 100rpx;
+  height: 100rpx !important;
+  border-radius: 50%;
+}
+.top-info {
+  position: relative;
+  display: flex;
+  background-color: #fff;
+  margin: -40rpx 20rpx 0 20rpx;
+  padding: 20rpx 0;
+  border: 1px solid #ccc;
+}
+.top-info .info-item {
+  flex: 1;
+  text-align: center;
+}
+.top-info .info-item .item-num {
+  color: var(--themeColor);
+}
+.top-info .info-item .item-text {
+  color: #333;
+}
+.top-title {
+  height: 90rpx;
+  background-color: #fff;
+  line-height: 90rpx;
+  margin-top: 30rpx;
+}
+.personal-tops-wrap {
+  background-color: #fff;
+  margin-top: 5rpx;
+  display: flex;
+}
+.personal-tops-wrap .navs-item {
+  flex: 1;
+  text-align: center;
+  padding: 10rpx;
+}
+.personal-tops-wrap .navs-item .iconfont {
+  color: var(--themeColor);
+  font-size: 48rpx;
+}
+.personal-tops-wrap .navs-item .navs-item-text {
+  font-size: 26rpx;
+  color: #666;
+}
+.content-wrap .content-item {
+  height: 90rpx;
+  background-color: #fff;
+  line-height: 90rpx;
+  margin-top: 10rpx;
+  padding: 0 15rpx;
+}
+.content-wrap .address {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.content-wrap .content-item.kefu-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.content-wrap .content-item.recommend-others {
+  margin: 30rpx 0 60rpx 0;
+}

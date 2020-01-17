@@ -1,5 +1,59 @@
 <view class="user-info-wrap">
-    <view class="user-img-wrap">
-        <view class="user-bg"></view>
+    <view class="user-img-wrap" wx:if="{{userInfo.nickName}}">
+        <image class="bg-image" src="{{userInfo.avatarUrl}}" mode="widthFix"></image>
+        <view class="user-bg">
+            <image src="{{userInfo.avatarUrl}}" mode="widthFix"></image>
+            <view class="user-nickname">{{userInfo.nickName}}</view>
+        </view>
     </view>
+    <view class="login-wrap" wx:else>
+        <button type="primary" plain bindgetuserinfo="handleGetUserInfo"open-type="getUserInfo">登录</button>
+    </view>
+</view>
+<view class="top-info">
+    <view class="info-item">
+        <view class="item-num">0</view>
+        <view class="item-text">收藏的店铺</view>
+    </view>
+    <view class="info-item">
+        <view class="item-num">0</view>
+        <view class="item-text">收藏的商品</view>
+    </view>
+    <view class="info-item">
+        <view class="item-num">0</view>
+        <view class="item-text">关注的商品</view>
+    </view>
+    <view class="info-item">
+        <view class="item-num">0</view>
+        <view class="item-text">我的足迹</view>
+    </view>
+</view>
+<view class="top-title">我的订单</view>
+<view class="personal-tops-wrap">
+    <view class="navs-item">
+        <view class="iconfont icon-danju"></view>
+        <view class="navs-item-text">全部订单</view>
+    </view>
+    <view class="navs-item">
+        <view class="iconfont icon-fukuantongzhi"></view>
+        <view class="navs-item-text">待付款</view>
+    </view>
+    <view class="navs-item">
+        <view class="iconfont icon-receipt-address"></view>
+        <view class="navs-item-text">待收货</view>
+    </view>
+    <view class="navs-item">
+        <view class="iconfont icon-tuihuotuikuan_dianpu"></view>
+        <view class="navs-item-text">退款/退货</view>
+    </view>
+</view>
+<view class="content-wrap">
+    <view class="content-item address">收货地址管理</view>
+    <view class="content-item kefu-wrap">
+        <view class="kefu-text">联系客服</view>
+        <view class="kefu-phone-number">400-618-4000</view>
+    </view>
+    <view class="content-item backup">意见反馈</view>
+    <view class="content-item about-us">关于我们</view>
+    <view class="content-item recommend-others">把应用推荐给其他人</view>
 </view>
